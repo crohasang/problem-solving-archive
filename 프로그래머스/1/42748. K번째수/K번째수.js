@@ -14,6 +14,4 @@ function solution(array, commands) {
     }
     
     return answer;
-    
-    return answer;
 }
