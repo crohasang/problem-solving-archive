@@ -37,7 +37,7 @@ function solution(answers) {
         }
     })
     
-    answer = answer.sort((a, b) => a - b);
+    // answer = answer.sort((a, b) => a - b);
     
     return answer;
 }
