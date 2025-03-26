@@ -1,17 +1,9 @@
+from collections import Counter
+
 def solution(participant, completion):
+    participant_counter = Counter(participant)
+    completion_counter = Counter(completion)
     
-    dict = {}
+    result = participant_counter - completion_counter
     
-    for person in participant:
-        if person in dict:
-            dict[person] += 1
-        else:
-            dict[person] = 1
-    
-    
-    for person in completion:
-        dict[person] -= 1
-        
-    for person, count in dict.items():
-        if count > 0 :
-            return person
+    return list(result.keys())[0]
