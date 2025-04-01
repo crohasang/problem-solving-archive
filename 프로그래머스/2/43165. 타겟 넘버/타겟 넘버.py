@@ -1,19 +1,16 @@
 def solution(numbers, target):
+    global answer
     answer = 0
-    bfs = [0]
     
-    for number in numbers:
-        temp = []
-        
-        for element in bfs:
-            temp.append(element + number)
-            temp.append(element - number)
-        
-        bfs = temp
+    def dfs(index, result):
+        if index == len(numbers):
+            if result == target:
+                global answer
+                answer += 1
+            return
+        else:
+            dfs(index + 1, result + numbers[index])
+            dfs(index + 1, result - numbers[index])
     
-    for element in bfs:
-        if element == target:
-            answer += 1
-            
-    
+    dfs(0, 0)
     return answer
