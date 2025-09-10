@@ -1,25 +1,26 @@
-let answer = 0;
+
 
 function solution(numbers, target) {
-    const length = numbers.length;
+    let answer = 0;
     
-    recursive(0, 0, numbers, length, target);
+    dfs(0, 0);
     
-    return answer;
-    
-}
-
-
-// 재귀함수
-function recursive(count, sum, arr, length, target) {
-    
-    if(count === length) {
-        if (target === sum) {
-            answer++;
+    function dfs(index, sum) {
+        if (index === numbers.length) {
+            if (sum === target) {
+                answer++;
+            }
+            
+            return;
         }
-        return;
+        else {
+            dfs(index + 1, sum + numbers[index]);
+            dfs(index + 1, sum - numbers[index]);      
+        }
     }
     
-    recursive(count + 1, sum + arr[count], arr, length, target);
-    recursive(count + 1, sum - arr[count], arr, length, target);
+    return answer;
 }
+
+
+
