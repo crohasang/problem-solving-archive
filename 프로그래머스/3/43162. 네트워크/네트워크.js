@@ -1,48 +1,26 @@
-
-
 function solution(n, computers) {
-    let answer = 0;
-    const graph = makeGraph(computers);
-    const visited = Array(n).fill(false);
+    let networks = 0;
+    let visit = Array(n).fill(false);
     
-    
-    for(let i = 0; i < n; i++) {
-        if(visited[i] === false) {
-            answer++;
-            dfs(graph, i, visited);
+    for (let i = 0; i < n; i++) {
+        if (!visit[i]) {
+            networks++;
+            isVisit(i);
         }
     }
     
-    return answer;
-}
-
-function makeGraph(graph) {
-    const graphArray = [];
-    
-    for(let i = 0; i < graph.length; i++) {
-        const array = [];
-        for(let j = 0; j < graph[i].length; j++) {
-            
-            if(i !== j) {
-                if(graph[i][j] === 1) {      
-                    array.push(j);
-                }
-            }
-        }
+    function isVisit(index) {
+        visit[index] = true;
         
-        graphArray.push(array);
+        const computer = computers[index];
+        
+        for (let i = 0; i < computer.length; i++) {
+            const isConnect = computer[i] === 1 ? true : false;
+            
+            if (!visit[i] && isConnect) {
+                isVisit(i);
+            }
+        }    
     }
-    
-    return graphArray;
-}
-
-function dfs(graph, v, visited, answerArray) {
-    visited[v] = true;
-    
-    
-    for (let node of graph[v]) {
-        if(!visited[node]) {
-            dfs(graph, node, visited);
-        }
-    }
+    return networks; 
 }
