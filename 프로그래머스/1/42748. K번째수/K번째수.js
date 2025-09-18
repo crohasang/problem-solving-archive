@@ -1,16 +1,14 @@
 function solution(array, commands) {
-    var answer = [];
+    let answer = [];
     
-    for(let arr of commands) {
-        var newArr = [];
+    for (let i = 0; i < commands.length; i++) {
+        const sliceFrom = commands[i][0];
+        const sliceTo = commands[i][1];
+        const sortedArrayIndex = commands[i][2];
         
-        for(let i = arr[0]; i <= arr[1]; i++) {
-            newArr.push(array[i-1]);
-        }
-        
-        newArr.sort((a,b) => a-b);
-    
-        answer.push(newArr[arr[2] - 1]);
+        const slicedArray = array.slice(sliceFrom - 1, sliceTo);
+        const sortedArray = slicedArray.sort((a,b) => a - b);
+        answer.push(sortedArray[sortedArrayIndex - 1]);
     }
     
     return answer;
