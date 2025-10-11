@@ -1,18 +1,17 @@
-#include <bits/stdc++.h>
+#include <iostream>
+
 using namespace std;
 
-int main(void) {
-  ios::sync_with_stdio(0);
-  cin.tie(0);
-  string s;
-  cin >> s;
-  for(char a = 'a'; a <= 'z'; a++){
-    int count = 0;
-    for(int i = 0; i < s.size(); i++){
-        if(s[i] == a) {
-            count++;
-        }
+int main() {
+    string S;
+    int arr[26] = {};
+    cin >> S;
+
+    for(int i = 0; i < S.size(); i++) {
+        arr[(int)S[i] - 97]++;
     }
-    cout << count << ' ';
-  }
+
+    for(int i = 0; i < 26; i++) {
+        cout << arr[i] << ' ';
+    }
 }
